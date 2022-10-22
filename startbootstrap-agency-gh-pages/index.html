@@ -8,10 +8,7 @@
         <title>Accessible Place Finder</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Leaflet-->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
-        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
-        crossorigin=""/>
+   
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -59,13 +56,26 @@
                     <h2 class="section-heading text-uppercase">Map</h2>
                     <h3 class="section-subheading text-muted">Explore the map for places nearby</h3>
 
-                  <!-- Map-->  
-                <div>
-                    <iframe width="1000" height="450" 
-                    style="border:0" loading="lazy" 
-                    allowfullscreen 
-                    src="https://www.google.com/maps/embed/v1/view?zoom=13&center=41.7004%2C-73.9210&key=AIzaSyC-zvbqmCzXeMMkQa3-WnAlGBGFXYr3aSg"></iframe>
-                </div>
+                  <!-- Map   key=AIzaSyC-zvbqmCzXeMMkQa3-WnAlGBGFXYr3aSg -->  
+                <h3 class="section-subheading text-muted">My Google Map</h3>
+                <div id="map"></div>
+
+                <script>
+                    function initMap(){
+                        var options = {
+                            zoom:8,
+                            center:{lat:41.7004,lng:-73.9210}
+                        }
+
+                        var map = new google.maps.Map(document.getElementById('map'), options);
+
+                    }
+                </script>
+
+                <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+                defer
+                ></script>
 
                 
                 
