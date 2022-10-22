@@ -1,6 +1,5 @@
 # Import Libraries
-import googlemaps  # Google Places API For Location Details
-import pprint
+from places_api_key import api_key()  # import api key
 import requests
 import json
 import time
@@ -8,7 +7,7 @@ import csv
 from geopy.geocoders import GoogleV3 as gm  # for address to coordinate conversion
 
 # API Key
-api_key = 'AIzaSyCsXFGypNDCNXMtHqplZrcEcoOhEMHrtz8'  # FIXME: remember to hide this
+api_key = api_key()
 
 # Class for our Search
 class GooglePlaces(object):
