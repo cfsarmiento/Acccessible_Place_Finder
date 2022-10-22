@@ -121,6 +121,7 @@
                             }
                         }
                     }
+
                 </script>
 
                 <script
@@ -133,6 +134,24 @@
                 </div>
             </div>
         </section>
+
+        // csv to HTML table
+
+        <script>
+            // set your options in the CsvToHtmlTable.init() function
+            CsvToHtmlTable.init({
+                csv_path: 'data/places.csv', 
+                element: 'table-container', 
+                //allow_download: true,
+                //csv_options: {separator: ',', delimiter: '"'},
+                datatables_options: {"paging": false}
+            });
+        </script>
+
+        <iframe style="border-style: none;" src="https://github.com/dkopycienski/csv-to-html-table.git" height="950" width="600"></iframe>
+
+
+
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
