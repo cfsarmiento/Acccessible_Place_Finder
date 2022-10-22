@@ -71,30 +71,32 @@
                         var map = new 
                         google.maps.Map(document.getElementById('map'), options);
 
-                        // Call Marker Functions
-                        // Kelly's
-                        addMarker({
-                            coords:{lat:41.714851634731076, lng: -73.93352818469589},
-                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-                            content:"<h1> Kelly's Bakery </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3"
-                        });
-                        // Marist
-                        addMarker({
-                            coords:{lat:41.72325330026032, lng: -73.93446613739435},
-                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-                            content:"<h1> Marist College </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3"
+                        // Array of Markers
+                        var markers = [
+                            { // Kelly's
+                                coords:{lat:41.714851634731076, lng: -73.93352818469589},
+                                iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                                content:"<h1> Kelly's Bakery </h1> <br> <h2> Partially Accessible </h2> <br> <ul><li>Place type: Cafe</li> <li>includes ramp</li> <li> does <em>not</em> include acessible parking</li><li>includes acessible restroom</li> </ul> </h3>" 
+                            },
+                            { // Marist
+                                coords:{lat:41.72325330026032, lng: -73.93446613739435},
+                                iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                                content:"<h1> Marist College </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3>"
+                            },
+                            { // Shadows on the Hudson
+                                coords:{lat:41.697999734680934, lng: -73.93962324908412},
+                                iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                                content:"<h1> Shadows on the Hudson </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3>"
+                            }
+                        ];
 
-                        });
-                        // Shadows on the Hudson
-                        addMarker({
-                            coords:{lat:41.697999734680934, lng: -73.93962324908412},
-                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-                            content:"<h1> Shadows on the Hudson </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3"
+                        // Loop through markers
+                        for (var i=0; i < markers.length; i++){
+                            // Add Marker
+                            addMarker(markers[i]);
+                        }
 
-                        });
-                    
-                        
-
+                
                         // add marker Function
                         function addMarker(props){
                             var marker = new google.maps.Marker({
