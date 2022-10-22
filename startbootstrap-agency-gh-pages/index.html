@@ -8,6 +8,10 @@
         <title>Accessible Place Finder</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Leaflet-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+        crossorigin=""/>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -15,6 +19,11 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+         <!-- Make sure you put this AFTER Leaflet's CSS -->
+         <!-- leaflet javascript -->
+        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+        crossorigin=""></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -50,6 +59,9 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Map</h2>
                     <h3 class="section-subheading text-muted">Explore the map for places nearby</h3>
+                </div>
+                <div id="map">
+                    
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
