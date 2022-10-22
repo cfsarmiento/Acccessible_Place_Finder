@@ -57,7 +57,6 @@
                     <h3 class="section-subheading text-muted">Explore the map for places nearby</h3>
 
                   <!-- Map   key=AIzaSyC-zvbqmCzXeMMkQa3-WnAlGBGFXYr3aSg -->  
-                <h3 class="section-subheading text-muted">My Google Map</h3>
                 <div id="map"></div>
 
                 <script>
@@ -72,42 +71,48 @@
                         var map = new 
                         google.maps.Map(document.getElementById('map'), options);
 
-
-                        /*
-                        // Add Marker
-                        var marker = new google.maps.Marker({
-                            position:{lat:41.714851634731076, lng: -73.93352818469589},
-                            map:map,
-                            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                        // Call Marker Functions
+                        // Kelly's
+                        addMarker({
+                            coords:{lat:41.714851634731076, lng: -73.93352818469589},
+                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                            content:"<h1> Kelly's Bakery </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3"
                         });
+                        // Marist
+                        addMarker({
+                            coords:{lat:41.72325330026032, lng: -73.93446613739435},
+                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                            content:"<h1> Marist College </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3"
 
-                        var infoWindow = new google.maps.InfoWindow({
-                            content: "<h1> Kelly's Bakery </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3"
                         });
+                        // Shadows on the Hudson
+                        addMarker({
+                            coords:{lat:41.697999734680934, lng: -73.93962324908412},
+                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                            content:"<h1> Shadows on the Hudson </h1> <br> <h2> Partially Accessible </h2> <br> <h3> Includes ramp </h3"
 
-                        marker.addListener('click', function(){
-                            infoWindow.open(map, marker);
                         });
-                        */
-
-                        // call marker function
-                        addMarker({lat:41.714851634731076, lng: -73.93352818469589});
-                        addMarker({lat:41.72325330026032, lng: -73.93446613739435});
+                    
                         
 
                         // add marker Function
-                        function addMarker(coords){
+                        function addMarker(props){
                             var marker = new google.maps.Marker({
-                            position:coords,
+                            position:props.coords,
                             map:map,
-                            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-                        });
+                            icon:props.iconImage
+                            });
 
+                            if(props.content){
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content:props.content
+                                });
+
+                                marker.addListener('click', function(){
+                                    infoWindow.open(map, marker);
+                                });
+                            }
                         }
-
-
-
-
                     }
                 </script>
 
