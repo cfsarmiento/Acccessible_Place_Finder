@@ -16,16 +16,6 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <style>
-            table {
-                border-collapse: collapse;
-            }
-            table td {
-                padding: 10px;
-                border: 1px solid #000;
-            }
-    
-            </style>
 
     
     </head>
@@ -143,44 +133,43 @@
         </section>
 
 
-         <!-- CSV to HTML table-->
-      
-
-       <section>
-        <!-- (A) PICK CSV FILE -->
-        <input type="file" accept=".csv" id="demoPick">
+         <!-- Table to show sample data -->
         
-        <!-- (B) GENERATE HTML TABLE HERE -->
-        <table id="demoTable"></table>
+         <section class="page-section" id="Table">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Table to Show Sample Data</h2>
+                    <h3 class="section-subheading text-muted">Output data to represent a sample location search of accessibility. In this data we searched downtown Denver</h3>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Address</th>
+                            <th>Price Level</th>
+                            <th>Rating</th>
+                        </tr>
+                        <tr>
+                            <td>11th Avenue Hostel</td>
+                            <td>Hotel</td>
+                            <td>1112 N Broadway, Denver, CO 80203, USA</td>
+                            <td>3.5</td>
+                            <td>1150</td>
+                        </tr>
+                    </table>
+                </div>
 
-        <script>
-            // (A) FILE READER + HTML ELEMENTS
-            let reader = new FileReader(),
-                picker = document.getElementById("demoPick"),
-                table = document.getElementById("demoTable");
 
-            // (B) READ CSV ON FILE PICK
-            picker.onchange = () => reader.readAsText(picker.files[0]);
+                <div class="timeline-body"><p class="text-muted">We wanted to create an application so people with various accessibility needs could 
+                    plan ahead and know the levels of access of a place before arrival. Users can now view a map of locations with the highest accessibility ratings
+                    and be confident that a business they are planning on visiting has what they need.
+                </p></div>
 
-            // (C) READ CSV & GENERATE TABLE
-            // CREDIT : https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/
-            reader.onloadend = () => {
-            table.innerHTML = "";
-            let rows = reader.result.split("\r\n");
-            for (let row of rows) {
-                let cols = row.match(/(?:\"([^\"]*(?:\"\"[^\"]*)*)\")|([^\",]+)/g);
-                if (cols!=null) {
-                let tr = table.insertRow();
-                for (let col of cols) {
-                    let td = tr.insertCell();
-                    td.innerHTML = col.replace(/(^"|"$)/g, "");
-                }
-                }
-            }
-            };
-        </script>
-   </section>
+            </div>
+        </section>
 
+       
     
         
         <!-- Portfolio Grid-->
@@ -299,7 +288,7 @@
                     plan ahead and know the levels of access of a place before arrival. Users can now view a map of locations with the highest accessibility ratings
                     and be confident that a business they are planning on visiting has what they need.
                 </p></div>
-\
+
             </div>
         </section>
         <!-- Team-->
