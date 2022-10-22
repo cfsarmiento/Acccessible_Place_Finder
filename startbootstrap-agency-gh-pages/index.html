@@ -17,11 +17,6 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-
-        <!-- CSV to HTML table -->
-        <title>CSV File to HTML Table Using AJAX jQuery</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -138,25 +133,42 @@
 
 
         <!-- CSV to HTML table-->
-        <div class="container">
-            <div class="table-responsive">
-             <h1 align="center">CSV File to HTML Table Using AJAX jQuery</h1>
-             <br />
-             <div align="center">
-              <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
-             </div>
-             <br />
-             <div id="places_table">
-             </div>
-            </div>
-           </div>
-        
+      
 
-        
+       <section>
+            <!-- (A) PICK CSV FILE -->
+            <input type="file" accept=".csv" id="demoPick">
+            
+            <!-- (B) GENERATE HTML TABLE HERE -->
+            <table id="demoTable"></table>
 
-       
+            <script>
+                // (A) FILE READER + HTML ELEMENTS
+                let reader = new FileReader(),
+                    picker = document.getElementById("demoPick"),
+                    table = document.getElementById("demoTable");
 
-    
+                // (B) READ CSV ON FILE PICK
+                picker.onchange = () => reader.readAsText(picker.files[0]);
+
+                // (C) READ CSV & GENERATE TABLE
+                // CREDIT : https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/
+                reader.onloadend = () => {
+                table.innerHTML = "";
+                let rows = reader.result.split("\r\n");
+                for (let row of rows) {
+                    let cols = row.match(/(?:\"([^\"]*(?:\"\"[^\"]*)*)\")|([^\",]+)/g);
+                    if (cols!=null) {
+                    let tr = table.insertRow();
+                    for (let col of cols) {
+                        let td = tr.insertCell();
+                        td.innerHTML = col.replace(/(^"|"$)/g, "");
+                    }
+                    }
+                }
+                };
+            </script>
+       </section>
         
 
 
@@ -494,39 +506,3 @@
     </body>
 </html>
 
-
-<script>
-    $(document).ready(function(){
-    $('#load_data').click(function(){
-    $.ajax({
-    url:"places.csv",
-    dataType:"text",
-    success:function(data)
-    {
-        var places_data = data.split(/\r?\n|\r/);
-        var table_data = '<table class="table table-bordered table-striped">';
-        for(var count = 0; count<places_data.length; count++)
-        {
-        var cell_data = places_data[count].split(",");
-        table_data += '<tr>';
-        for(var cell_count=0; cell_count<cell_data.length; cell_count++)
-        {
-        if(count === 0)
-        {
-        table_data += '<th>'+cell_data[cell_count]+'</th>';
-        }
-        else
-        {
-        table_data += '<td>'+cell_data[cell_count]+'</td>';
-        }
-        }
-        table_data += '</tr>';
-        }
-        table_data += '</table>';
-        $('#places_table').html(table_data);
-    }
-    });
-    });
-    
-    });
-    </script>
