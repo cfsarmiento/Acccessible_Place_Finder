@@ -17,17 +17,17 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <style>
-        table {
-            border-collapse: collapse;
-        }
-        table td {
-            padding: 10px;
-            border: 1px solid #000;
-        }
+            table {
+                border-collapse: collapse;
+            }
+            table td {
+                padding: 10px;
+                border: 1px solid #000;
+            }
+    
+            </style>
 
-        </style>
-        
-
+    
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -83,7 +83,7 @@
                             { // Kelly's
                                 coords:{lat:41.714851634731076, lng: -73.93352818469589},
                                 iconImage: 'assets/map/partially_accessible-small.png', alt: 'Orange point on the map, partialle accessible place',
-                                content:"<h2> Kelly's Bakery</h2><img src='assets/map/location_details/location_description_bakery.jpg' width='150'>", alt: 'Place type: cafe. There is restroom accommondations, but no accessible parking and no ramps, '
+                                content:"<h2> Kelly's Bakery</h2><img src='assets/map/location_details/location_description_bakery.jpg' width='150'>", alt: 'Place type: cafe. There is restroom accommondations, but no accessible parking and no ramps, ' 
                             },
                             { // Marist
                                 coords:{lat:41.72325330026032, lng: -73.93446613739435},
@@ -143,46 +143,46 @@
         </section>
 
 
-        <!-- CSV to HTML table-->
+         <!-- CSV to HTML table-->
       
 
        <section>
-            <!-- (A) PICK CSV FILE -->
-            <input type="file" accept=".csv" id="demoPick">
-            
-            <!-- (B) GENERATE HTML TABLE HERE -->
-            <table id="demoTable"></table>
-
-            <script>
-                // (A) FILE READER + HTML ELEMENTS
-                let reader = new FileReader(),
-                    picker = document.getElementById("demoPick"),
-                    table = document.getElementById("demoTable");
-
-                // (B) READ CSV ON FILE PICK
-                picker.onchange = () => reader.readAsText(picker.files[0]);
-
-                // (C) READ CSV & GENERATE TABLE
-                // CREDIT : https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/
-                reader.onloadend = () => {
-                table.innerHTML = "";
-                let rows = reader.result.split("\r\n");
-                for (let row of rows) {
-                    let cols = row.match(/(?:\"([^\"]*(?:\"\"[^\"]*)*)\")|([^\",]+)/g);
-                    if (cols!=null) {
-                    let tr = table.insertRow();
-                    for (let col of cols) {
-                        let td = tr.insertCell();
-                        td.innerHTML = col.replace(/(^"|"$)/g, "");
-                    }
-                    }
-                }
-                };
-            </script>
-       </section>
+        <!-- (A) PICK CSV FILE -->
+        <input type="file" accept=".csv" id="demoPick">
         
+        <!-- (B) GENERATE HTML TABLE HERE -->
+        <table id="demoTable"></table>
 
+        <script>
+            // (A) FILE READER + HTML ELEMENTS
+            let reader = new FileReader(),
+                picker = document.getElementById("demoPick"),
+                table = document.getElementById("demoTable");
 
+            // (B) READ CSV ON FILE PICK
+            picker.onchange = () => reader.readAsText(picker.files[0]);
+
+            // (C) READ CSV & GENERATE TABLE
+            // CREDIT : https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/
+            reader.onloadend = () => {
+            table.innerHTML = "";
+            let rows = reader.result.split("\r\n");
+            for (let row of rows) {
+                let cols = row.match(/(?:\"([^\"]*(?:\"\"[^\"]*)*)\")|([^\",]+)/g);
+                if (cols!=null) {
+                let tr = table.insertRow();
+                for (let col of cols) {
+                    let td = tr.insertCell();
+                    td.innerHTML = col.replace(/(^"|"$)/g, "");
+                }
+                }
+            }
+            };
+        </script>
+   </section>
+
+    
+        
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
