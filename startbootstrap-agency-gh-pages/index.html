@@ -90,17 +90,32 @@
                         });
                         */
 
-                        // call marker function
-                        addMarker({lat:41.714851634731076, lng: -73.93352818469589});
-                        addMarker({lat:41.72325330026032, lng: -73.93446613739435});
+                        // call marker functions
+
+                        // Kelly's
+                        addMarker({
+                            coords:{lat:41.714851634731076, lng: -73.93352818469589},
+                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                        });
+                        // Marist
+                        addMarker({
+                            coords:{lat:41.72325330026032, lng: -73.93446613739435},
+                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                        });
+                        // Shadows on the Hudson
+                        addMarker({
+                            coords:{lat:41.697999734680934, lng: -73.93962324908412},
+                            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                        });
+                    
                         
 
                         // add marker Function
-                        function addMarker(coords){
+                        function addMarker(props){
                             var marker = new google.maps.Marker({
-                            position:coords,
+                            position:props.coords,
                             map:map,
-                            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                            icon:props.iconImage
                         });
 
                         }
