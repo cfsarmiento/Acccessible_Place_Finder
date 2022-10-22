@@ -79,6 +79,16 @@
                             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                         });
 
+                        var infoWindow = new google.map.InfoWindow({
+                            content: "<h1> Kelly's Bakery </h1>"
+                        });
+
+                        marker.addListener('click', function(){
+                            infoWindow.open(map, marker);
+                        });
+
+
+
 
 
                     }
