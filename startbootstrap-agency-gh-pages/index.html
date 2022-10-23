@@ -16,18 +16,21 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
         <style>
-        table {
-            border-collapse: collapse;
-        }
-        table td {
-            padding: 10px;
-            border: 1px solid #000;
-        }
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
 
+            }
+
+            .center {
+                margin-left: auto;
+                margin-right: auto;
+            }
         </style>
-        
 
+    
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -40,10 +43,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services" style="color:black"><em>Map</em></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio" style="color:black"><em>Features</em></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about" style="color:black"><em>About</em></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team" style="color:black"><em>Team</em></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services"><img src="assets/img/buttons/map_button.png" width="60"></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio"><img src="assets/img/buttons/features_button.png" width="90"></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about"><img src="assets/img/buttons/about_button.png" width="70"></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team"><img src="assets/img/buttons/team_button.png" width="70"></a></li>
                     </ul>
                 </div>
             </div>
@@ -82,23 +85,28 @@
                         var markers = [
                             { // Kelly's
                                 coords:{lat:41.714851634731076, lng: -73.93352818469589},
-                                iconImage: 'assets/map/partially_accessible-small.png',
-                                content:"<h2> Kelly's Bakery</h2><img src='assets/map/location_details/location_description_bakery.jpg' width='150'>" 
+                                iconImage: 'assets/map/partially_accessible-small.png', alt: 'Orange point on the map, partialle accessible place',
+                                content:"<h2> Kelly's Bakery</h2><img src='assets/map/location_details/location_description_bakery.jpg' width='150'>", alt: 'Place type: cafe. There is restroom accommondations, but no accessible parking and no ramps, ' 
                             },
                             { // Marist
                                 coords:{lat:41.72325330026032, lng: -73.93446613739435},
-                                iconImage: 'assets/map/fully_accessible-small.png',
-                                content:"<h2> Marist College</h2><img src='assets/map/location_details/location_description_marist.jpg' width='150'>"
+                                iconImage: 'assets/map/fully_accessible-small.png', alt: 'Green point on the map, fully accessible place',
+                                content:"<h2> Marist College</h2><img src='assets/map/location_details/location_description_marist.jpg' width='150'>", alt: 'Place type: college. There is accessible parking, restroom accommodations, ramps and elevator'
                             },
                             { // Shadows on the Hudson
                                 coords:{lat:41.697999734680934, lng: -73.93962324908412},
-                                iconImage: 'assets/map/partially_accessible-small.png',
-                                content:"<h2> Shadows on the Hudson </h2><img src='assets/map/location_details/location_description_hudson.jpg' width='150'>"
+                                iconImage: 'assets/map/partially_accessible-small.png', alt: 'Orange point on the map, partialle accessible place',
+                                content:"<h2> Shadows on the Hudson </h2><img src='assets/map/location_details/location_description_hudson.jpg' width='150'>", alt: 'Place type: restaurant. There is accessible parking and restrooms accommodations, but no ramps'
                             },
                             { // Mid Hudson Discovery Museum 
                                 coords:{lat:41.7090511944376, lng: -73.93899507074786},
-                                iconImage: 'assets/map/fully_accessible-small.png',
-                                content:"<h2> Mid Hudson Discovery Museum </h2><img src='assets/map/location_details/location_description_museum.jpg' width='150'>"
+                                iconImage: 'assets/map/fully_accessible-small.png', alt:'Green point on the map, fully accessible place',
+                                content:"<h2> Mid Hudson Discovery Museum </h2><img src='assets/map/location_details/location_description_museum.jpg' width='150'>", alt: 'Place type: museum. There is accessible parking, restroom accommodations and ramps'
+                            },
+                            { // Mill House Brewing Company
+                                coords:{lat:41.7059793931046, lng: -73.92639304876148},
+                                iconImage: 'assets/map/not_accessible-small.png', alt:'red point on the map, not accessible place',
+                                content:"<h2> Mill House Brewing Company </h2><img src='assets/map/location_details/location_description_millhouse.jpg' width='150'>", alt: 'Place type: mill house. There is no accessible parking, no restroom accommodations and no ramps'
                             }
                         ];
 
@@ -143,53 +151,61 @@
         </section>
 
 
-        <!-- CSV to HTML table-->
-      
-
-       <section>
-            <!-- (A) PICK CSV FILE -->
-            <input type="file" accept=".csv" id="demoPick">
-            
-            <!-- (B) GENERATE HTML TABLE HERE -->
-            <table id="demoTable"></table>
-
-            <script>
-                // (A) FILE READER + HTML ELEMENTS
-                let reader = new FileReader(),
-                    picker = document.getElementById("demoPick"),
-                    table = document.getElementById("demoTable");
-
-                // (B) READ CSV ON FILE PICK
-                picker.onchange = () => reader.readAsText(picker.files[0]);
-
-                // (C) READ CSV & GENERATE TABLE
-                // CREDIT : https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/
-                reader.onloadend = () => {
-                table.innerHTML = "";
-                let rows = reader.result.split("\r\n");
-                for (let row of rows) {
-                    let cols = row.match(/(?:\"([^\"]*(?:\"\"[^\"]*)*)\")|([^\",]+)/g);
-                    if (cols!=null) {
-                    let tr = table.insertRow();
-                    for (let col of cols) {
-                        let td = tr.insertCell();
-                        td.innerHTML = col.replace(/(^"|"$)/g, "");
-                    }
-                    }
-                }
-                };
-            </script>
-       </section>
+         <!-- Table to show sample data -->
         
+         <section class="page-section" id="Table">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Sample Data</h2>
+                    <h3 class="section-subheading text-muted">Output data to represent a sample location search of accessibility. In this data we searched downtown Denver</h3>
+                </div>
+                <div>
+                    <table class="center">
+                        <tr style="text-align:center"> 
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Address</th>
+                            <th>Price Level</th>
+                            <th>Rating</th>
+                        </tr>
+                        <tr>
+                            <td>11th Avenue Hostel</td>
+                            <td>Hotel</td>
+                            <td>1112 N Broadway, Denver, CO 80203, USA</td>
+                            <td>3.5</td>
+                            <td>1150</td>
+                        </tr>
+                        <tr>
+                            <td>Sheraton Denver Downtown Hotel/td>
+                            <td>Hotel</td>
+                            <td>1550 Court Pl, Denver, CO 80202, USA</td>
+                            <td>4.2</td>
+                            <td>5768</td>
+                        </tr>
+                        <tr>
+                            <td>Sonesta Denver Downtown</td>
+                            <td>Hotel</td>
+                            <td>1450 Glenarm Pl, Denver, CO 80202, USA</td>
+                            <td>4</td>
+                            <td>2122</td>
+                        </tr>
 
 
+                    </table>
+                </div>
+            </div>
+        </section>
+
+       
+    
+        
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Features</h2>
                     <h3 class="section-subheading text-muted">Have a specific requirement for something you need when you go out?
-                        Search for type of location, type of accessibility, and view ratings from 1-5. 
+                        Search for type of location, type of accessibility, and view final rating of accessibility. 
                     </h3>
                 </div>
                 <div class="row">
@@ -299,7 +315,7 @@
                     plan ahead and know the levels of access of a place before arrival. Users can now view a map of locations with the highest accessibility ratings
                     and be confident that a business they are planning on visiting has what they need.
                 </p></div>
-\
+
             </div>
         </section>
         <!-- Team-->
